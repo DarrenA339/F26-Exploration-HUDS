@@ -1,21 +1,7 @@
 export default function Home() {
   return (
-    <div>
-      <h1>
-       HI
-      </h1>
-      <h1>
-       HI
-      </h1>
-      <h1>
-       HI
-      </h1>
-      <h1>
-       HI
-      </h1>
-      <h1>
-       HI
-      </h1>
+    <div className="flex h-screen">
+      <p>hi</p>
     </div>
   );
 }

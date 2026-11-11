@@ -14,9 +14,6 @@ export default function OverlayTestPage() {
         ingredients={["Jasmine rice", "Ginger", "Sesame oil", "Salt"]}
         allergens={["Sesame"]}
         nutritionSrc="/images/riceNutrition.png"
-        // Once you add an `onClose: () => void` prop to FoodInfoOverlayProps,
-        // uncomment the next line:
-        // onClose={() => {}}
       />
     </main>
   );

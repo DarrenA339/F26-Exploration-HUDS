@@ -14,6 +14,14 @@ type FoodInfoOverlayProps = {
   nutritionSrc: string;
 };
 
+const DIETARY_COLORS: Record<string, string> = {
+  vegan: "bg-[#E7F3EC] text-[#2E6B4F]",
+  vegetarian: "bg-[#E7F3EC] text-[#2E6B4F]",
+  "gluten free": "bg-[#FDF2E2] text-[#8A5A18]",
+  halal: "bg-[#E8EFF9] text-[#2B4F86]",
+  kosher: "bg-[#F0EAF8] text-[#5B3A89]",
+};
+
 export default function FoodInfoOverlay({
   name,
   meal,
@@ -35,7 +43,11 @@ export default function FoodInfoOverlay({
         <div className="flex justify-between">
             {/* Contains food name and close button */}
             <h1 className="font-bold text-3xl">{name}</h1>
-            <button className="size-10 rounded-full bg-gray-300 hover:bg-gray-400 cursor-pointer transition duration-150 ease-in-out">x</button>
+            <button className="flex justify-center items-center size-10 rounded-full bg-gray-200 hover:bg-gray-300 active:opacity-70 cursor-pointer transition duration-150 ease-in-out">
+                <svg viewBox="0 0 24 24" className="size-5 stroke-current" fill="none" strokeWidth={2} strokeLinecap="round">
+                    <path d="M6 6l12 12M18 6L6 18" />
+                </svg>
+            </button>
         </div>
         <div>
             {/* Contains the meal and serving size (beneath food name) */}
@@ -45,9 +57,12 @@ export default function FoodInfoOverlay({
         {/* Dietary labels */}
         <div className="flex flex-wrap gap-2 my-3">
           {/* Map through dietaryLabels. use basic text for now and add the component when teammate creates it*/}
-          {dietaryLabels.map((label) => (
-            <span key={label} className="px-3 py-1 text-sm font-medium border rounded-full">{label}</span>
-          ))}
+          {dietaryLabels.map((label) => {
+            const colors = DIETARY_COLORS[label.toLowerCase()] ?? "bg-gray-100 text-gray-700";
+            return (
+                <span key={label} className={"font-bold px-3 py-1 text-sm rounded-full " + colors}>{label}</span>
+            );
+          })}
         </div>
 
         {/* Two-column content layout */}
@@ -55,7 +70,7 @@ export default function FoodInfoOverlay({
           {/* LEFT COLUMN */}
           <div className="mr-5">
             {/* Food image */}
-            <img className="border-2 rounded-lg mb-4" src={imageSrc}></img>
+            <img className="rounded-lg mb-4" src={imageSrc}></img>
 
             {/* Ingredients section */}
             <h3 className="font-bold text-xl">Ingredients</h3>
@@ -91,7 +106,7 @@ export default function FoodInfoOverlay({
             <p>{servings === 1 ? "serving" : "servings"}</p>
           </div>
 
-          <div className="flex gap-8">
+          <div className="flex gap-4">
             {/* View Calorie Tracker button */}
             <button className="px-5 border-2 border-[#a51c30] rounded-full font-bold text-[#a51c30] bg-white hover:cursor-pointer hover:bg-[#a51c30] hover:text-white active:opacity-60 transition duration-150 ease-in-out">View Calorie Tracker</button>
 

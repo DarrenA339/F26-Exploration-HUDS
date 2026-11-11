@@ -42,7 +42,7 @@ export default function FoodInfoOverlay({
         {/* Dietary labels */}
         <div>
           {/* Map through dietaryLabels. use basic text for now and add the component when teammate creates it*/}
-          <p>Vegan</p>
+          <p>{dietaryLabels.join(", ")}</p>
         </div>
 
         {/* Two-column content layout */}

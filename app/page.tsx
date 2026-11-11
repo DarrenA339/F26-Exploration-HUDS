@@ -1,24 +1,23 @@
-import Sidebar from "@/components/sidebar";
+import FoodInfoOverlay from "@/components/foodInfoOverlay";
 
-export default function Home() {
+// Scratch page for developing the overlay. Visit http://localhost:3000/overlay-test
+// Not part of the real app -- delete it (or keep it) once the overlay is done.
+export default function OverlayTestPage() {
   return (
-    <div className="flex h-screen">
-      <Sidebar/>
-      <div className="flex flex-1 flex-col items-center justify-center gap-2">
-        <h1 className="text-4xl">Let's Noodle!</h1>
-        <div className="flex w-full max-w-2xl flex-col bg-gray-100">
-            <textarea className="bg-gray-200"></textarea>
-            <div className="flex items-center gap-2">
-                <button>+</button>
-                <button>Chat</button>
-                <button>Cowork</button>
-                <div className="flex justify-end ml-auto gap-2">
-                    <button>opus</button>
-                    <button>mic</button>
-                </div>
-            </div>
-        </div>
-      </div>
-    </div>
+    <main>
+      <FoodInfoOverlay
+        name="Ginger Jasmine Rice"
+        meal="Lunch"
+        servingSize="1 cup"
+        imageSrc="/images/rice.png"
+        dietaryLabels={["Vegan", "Gluten free"]}
+        ingredients={["Jasmine rice", "Ginger", "Sesame oil", "Salt"]}
+        allergens={["Sesame"]}
+        nutritionSrc="/images/riceNutrition.png"
+        // Once you add an `onClose: () => void` prop to FoodInfoOverlayProps,
+        // uncomment the next line:
+        // onClose={() => {}}
+      />
+    </main>
   );
 }

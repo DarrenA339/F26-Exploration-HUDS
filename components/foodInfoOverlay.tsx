@@ -1,3 +1,6 @@
+"use client";
+
+import {useState} from "react";
 import Image from "next/image";
 
 type FoodInfoOverlayProps = {
@@ -21,9 +24,9 @@ export default function FoodInfoOverlay({
   allergens,
   nutritionSrc,
 }: FoodInfoOverlayProps) {
-
+    const [servings, setServings] = useState(1);
   return (
-    <div className="bg-gray-200 p-2 w-200 h-200">
+    <div className="m-5 bg-white border rounded-lg p-8">
       {/* Dark background overlay */}
 
       {/* Main modal container */}
@@ -31,18 +34,20 @@ export default function FoodInfoOverlay({
         {/* Header: Food name, meal, serving size, close button */}
         <div className="flex justify-between">
             {/* Contains food name and close button */}
-            <h1>{name}</h1>
-            <button className="w-30 bg-gray-400 hover:bg-gray-700">x</button>
+            <h1 className="font-bold text-3xl">{name}</h1>
+            <button className="size-10 rounded-full bg-gray-300 hover:bg-gray-400 cursor-pointer transition duration-150 ease-in-out">x</button>
         </div>
         <div>
             {/* Contains the meal and serving size (beneath food name) */}
-            <h4 className="text-gray-800">{meal} &middot; {servingSize}</h4>
+            <h4 className="text-gray-800 text-xl">{meal} &middot; {servingSize}</h4>
         </div>
 
         {/* Dietary labels */}
-        <div>
+        <div className="flex flex-wrap gap-2 my-3">
           {/* Map through dietaryLabels. use basic text for now and add the component when teammate creates it*/}
-          <p>{dietaryLabels.join(", ")}</p>
+          {dietaryLabels.map((label) => (
+            <span key={label} className="px-3 py-1 text-sm font-medium border rounded-full">{label}</span>
+          ))}
         </div>
 
         {/* Two-column content layout */}
@@ -50,41 +55,48 @@ export default function FoodInfoOverlay({
           {/* LEFT COLUMN */}
           <div className="mr-5">
             {/* Food image */}
-            <img src={imageSrc}></img>
+            <img className="border-2 rounded-lg mb-4" src={imageSrc}></img>
 
             {/* Ingredients section */}
-            <h3>Ingredients</h3>
-            <p>{ingredients.join(", ")}</p>
+            <h3 className="font-bold text-xl">Ingredients</h3>
+            <p className="mb-4">{ingredients.join(", ")}</p>
 
             {/* Contains / Allergens section */}
-            <h3>Contains</h3>
-            <p>{allergens.join(", ")}</p>
+            
+            <h3 className="font-bold text-xl mb-1">Contains</h3>
+            <div className="flex flex-wrap gap-2">
+                {allergens.map((allergen) => (
+                    <span key={allergen} className="bg-red-100 font-bold text-[#a51c30] rounded-full px-3">
+                        {allergen}
+                    </span>
+                ))}
+            </div>
           </div>
 
           {/* RIGHT COLUMN */}
           <div>
             {/* Nutrition Facts panel can be image for now*/}
-            <img src={nutritionSrc}></img>
+            <img className="border-2" src={nutritionSrc}></img>
           </div>
         </div>
 
         {/* Footer */}
-        <hr className="my-2"></hr>
+        <hr className="border-gray-300 my-5"></hr>
         <div className="flex justify-between">
           {/* Serving quantity selector */}
-          <div className="flex">
-            <button className="w-10 bg-gray-400 hover:bg-gray-700">-</button>
-            <p>1</p>
-            <button className="w-10 bg-gray-400 hover:bg-gray-700">+</button>
-            <p>serving(s)</p>
+          <div className="flex items-center font-bold border-2 border-gray-300 rounded-full px-2 py-1 gap-4">
+            <button onClick={() => setServings((servings) => servings <= 1 ? servings : servings - 1)} className="size-8 rounded-full bg-gray-200 hover:bg-gray-400 cursor-pointer transition duration-150 ease-in-out">-</button>
+            <p>{servings}</p>
+            <button onClick={() => setServings((servings) => servings + 1)} className="size-8 rounded-full bg-gray-200 hover:bg-gray-400 cursor-pointer transition duration-150 ease-in-out">+</button>
+            <p>{servings === 1 ? "serving" : "servings"}</p>
           </div>
 
           <div className="flex gap-8">
             {/* View Calorie Tracker button */}
-            <button className="bg-gray-400 hover:bg-gray-700">View Calorie Tracker</button>
+            <button className="px-5 border-2 border-[#a51c30] rounded-full font-bold text-[#a51c30] bg-white hover:cursor-pointer hover:bg-[#a51c30] hover:text-white active:opacity-60 transition duration-150 ease-in-out">View Calorie Tracker</button>
 
             {/* Add to Calorie Tracker button */}
-            <button className="bg-gray-400 hover:bg-gray-700">Add to Calorie Tracker</button>
+            <button className="px-5 rounded-full bg-[#a51c30] text-white font-bold hover:opacity-75 cursor-pointer active:opacity-60 transition duration-150 ease-in-out">Add to Calorie Tracker</button>
           </div>
         </div>
       </div>

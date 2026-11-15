@@ -1,20 +1,35 @@
-import FoodInfoOverlay from "@/components/foodInfoOverlay";
+import MealButton from "@/components/mealButton";
+import DietaryTag from "@/components/dietaryTag";
 
-// Scratch page for developing the overlay. Visit http://localhost:3000/overlay-test
-// Not part of the real app -- delete it (or keep it) once the overlay is done.
-export default function OverlayTestPage() {
+export default function Home() {
   return (
-    <main>
-      <FoodInfoOverlay
-        name="Ginger Jasmine Rice"
-        meal="Lunch"
-        servingSize="1 cup"
-        imageSrc="/images/rice.png"
-        dietaryLabels={["Vegan", "Gluten free"]}
-        ingredients={["Jasmine rice", "Ginger", "Sesame oil", "Salt"]}
-        allergens={["Sesame"]}
-        nutritionSrc="/images/riceNutrition.png"
+    <main >
+      <div className = 'flex'>
+        <MealButton label="Breakfast" isActive={false} />
+        <MealButton label="Lunch" isActive={false} />
+        <MealButton label="Dinner" isActive={false} />
+        <MealButton label="Salad Bar" isActive={true} />
+        <MealButton
+          label="Desserts & Daily Offerings"
+          isActive={false}
+        />
+      </div>
+
+      <div className = 'flex'>
+        <DietaryTag
+          label="Vegan"
+          color="#166534"
+          backgroundColor="#E8F5EC"
+        />
+
+        <DietaryTag
+          label="Gluten free"
+          color="#996000"
+          backgroundColor="#FFF3DF"
       />
+      </div>
+
+      
     </main>
   );
 }

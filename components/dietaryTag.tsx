@@ -10,7 +10,9 @@ export default function DietaryTag({
   backgroundColor,
 }: DietaryTagProps) {
   return (
-    <div>
+    <div className ="inline-block m-1">
+      <button className = "rounded-full px-4 py-1 font-serif font-bold text-base whitespace-nowwrap"
+      style={{color: color, backgroundColor: backgroundColor}}>{label}</button>
       {/* Implement tag */}
     </div>
   );

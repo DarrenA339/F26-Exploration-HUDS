@@ -1,19 +1,27 @@
-type DietaryTagProps = {
+import type { TagColors } from "@/lib/dietaryColors";
+
+type DietaryTagProps = TagColors & {
   label: string;
-  color: string;
-  backgroundColor: string;
 };
 
+/**
+ * A single pill-shaped tag. Used for dietary labels (Vegan, Halal, ...) and
+ * for allergens — the only difference is the color pair passed in, which
+ * lives in `lib/dietaryColors.ts`.
+ *
+ * Purely informational, so it renders a <span>, not a <button>.
+ */
 export default function DietaryTag({
   label,
   color,
   backgroundColor,
 }: DietaryTagProps) {
   return (
-    <div className ="inline-block m-1">
-      <button className = "rounded-full px-4 py-1 font-serif font-bold text-base whitespace-nowwrap"
-      style={{color: color, backgroundColor: backgroundColor}}>{label}</button>
-      {/* Implement tag */}
-    </div>
+    <span
+      className="inline-block m-1 rounded-full px-4 py-1 font-serif font-bold text-base whitespace-nowrap"
+      style={{ color, backgroundColor }}
+    >
+      {label}
+    </span>
   );
 }

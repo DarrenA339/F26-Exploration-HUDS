@@ -1,6 +1,7 @@
 import MealButton from "@/components/mealButton";
 import DietaryTag from "@/components/dietaryTag";
 import FoodInfoOverlay from "@/components/foodInfoOverlay";
+import FoodCard from "@/components/foodCard";
 import { getAllFoods } from "@/data/foods"
 
 export default function Home() {
@@ -8,6 +9,16 @@ export default function Home() {
     const foods = getAllFoods();
   return (
     <main >
+        {foods.map((food) => (
+            <FoodCard key={food.id}
+            name={food.name}
+            imageSrc={food.imageSrc}
+            calories={food.nutrition.calories}
+            servings={1}
+            tags={food.dietaryLabels}
+            />
+        ))}
+
       <div className = 'flex'>
         <MealButton label="Breakfast" isActive={false} />
         <MealButton label="Lunch" isActive={false} />
@@ -37,7 +48,7 @@ export default function Home() {
         {foods.map((food) => (
             <FoodInfoOverlay key={food.id}
             name={food.name}
-            meal={food.meals.join(" · ")}
+            meal={food.meals.join(", ")}
             servingSize={food.servingSize}
             imageSrc={food.imageSrc}
             dietaryLabels={food.dietaryLabels}

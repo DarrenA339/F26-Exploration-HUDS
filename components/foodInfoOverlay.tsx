@@ -2,9 +2,11 @@
 
 import {useState} from "react";
 import NutritionLabel from "@/components/nutritionLabel";
+import foodCard from "@/components/foodCard"
 import DietaryTag from "@/components/dietaryTag";
-import {DEFAULT_TAG_COLORS, DIETARY_TAG_COLORS} from "@/lib/dietaryColors";
+import {ALLERGEN_TAG_COLORS, dietaryTagColors} from "@/lib/dietaryColors";
 import type {Allergen, DietaryLabel, NutritionFacts} from "@/lib/types";
+
 
 type FoodInfoOverlayProps = {
   name: string;
@@ -53,11 +55,7 @@ export default function FoodInfoOverlay({
         {/* Dietary labels */}
         <div className="flex flex-wrap my-2">
           {dietaryLabels.map((label) => (
-            <DietaryTag
-              key={label}
-              label={label}
-              {...(DIETARY_TAG_COLORS[label] ?? DEFAULT_TAG_COLORS)}
-            />
+            <DietaryTag key={label} label={label} {...dietaryTagColors(label)} />
           ))}
         </div>
 
@@ -75,19 +73,16 @@ export default function FoodInfoOverlay({
             {/* Contains / Allergens section */}
             
             <h3 className="font-bold text-xl mb-1">Contains</h3>
-            <div className="flex flex-wrap gap-2">
-                {allergens.map((allergen) => (
-                    <span key={allergen} className="bg-red-100 font-bold text-[#a51c30] rounded-full px-3">
-                        {allergen}
-                    </span>
-                ))}
+            <div className="flex flex-wrap">
+              {allergens.map((allergen) => (
+                <DietaryTag key={allergen} label={allergen} {...ALLERGEN_TAG_COLORS} />
+              ))}
             </div>
           </div>
 
           {/* RIGHT COLUMN */}
           <div>
-            {/* Nutrition Facts panel, rendered from data and scaled by the
-                serving stepper below. */}
+            {/* Nutrition Facts panel, which is rendered from data and scaled by the serving stepper below. */}
             <NutritionLabel
               nutrition={nutrition}
               servingSize={servingSize}

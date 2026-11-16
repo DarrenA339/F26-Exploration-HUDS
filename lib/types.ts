@@ -71,12 +71,12 @@ export type NutritionFacts = {
 
 /** A single menu item. */
 export type FoodItem = {
-  /** Stable kebab-case slug. Safe to use as a React key or a URL segment. */
+  /** slug */
   id: string;
   name: string;
   /** An item can appear at more than one meal (rice shows up at lunch AND dinner). */
   meals: Meal[];
-  /** Human-readable serving, e.g. "1/4 cup (45g)". Shown in the header and on the label. */
+  /** It's a string bc we want a Human-readable serving, e.g. "1/4 cup (45g)". Shown in the header and on the label. */
   servingSize: string;
   imageSrc: string;
   dietaryLabels: DietaryLabel[];

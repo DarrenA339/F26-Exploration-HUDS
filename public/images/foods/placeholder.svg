@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300" role="img" aria-label="Food photo coming soon">
+  <rect width="400" height="300" fill="#F4F1EC"/>
+  <circle cx="200" cy="145" r="78" fill="#E6E0D7"/>
+  <circle cx="200" cy="145" r="52" fill="#DAD2C6"/>
+  <path d="M118 108c0-10 8-18 18-18s18 8 18 18v74a8 8 0 0 1-16 0v-40h-4a16 16 0 0 1-16-16z" fill="#C9BFAF"/>
+  <path d="M264 90c14 0 24 16 24 36s-8 30-16 32v24a8 8 0 0 1-16 0v-24c-8-2-16-12-16-32s10-36 24-36z" fill="#C9BFAF"/>
+  <text x="200" y="258" text-anchor="middle" font-family="Georgia, serif" font-size="17" fill="#8C8375">Photo coming soon</text>
+</svg>

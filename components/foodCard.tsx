@@ -1,4 +1,6 @@
 import Image from "next/image";
+import DietaryTag from "@/components/dietaryTag";
+import {dietaryTagColors} from "@/lib/dietaryColors";
 
 type FoodCardProps = {
   name: string;
@@ -16,23 +18,26 @@ export default function FoodCard({
   tags,
 }: FoodCardProps) {
   return (
-    <div>
+    <div className="flex border rounded-xl p-5 w-100">
       {/* LEFT: Food image */}
-
+      <img src={imageSrc} className="w-20 h-20 object-contain mr-5"/>
       {/* MIDDLE: Food information */}
       <div>
          {/* Name */}
-
+         <h3 className="flex-1 text-2xl font-bold">{name}</h3>
          {/* Calories and Serving */}
-
+         <h3 className="text-xl">{calories} cal &middot; {servings} {servings == 1 ? "serving" : "servings"}</h3>
         {/* Dietary tags */}
-        <div>
-          {/* Use .map() to display each tag */}
+        <div className="flex flex-wrap">
+          {tags.map((tag) => (
+            <DietaryTag key={tag} label={tag} {...dietaryTagColors(tag)} />
+          ))}
         </div>
 
       </div>
 
       {/* RIGHT: Favorite button */}
+      <button className="self-start border bg-[#FFB6C1] w-8 h-8 rounded-3xl cursor-pointer active:opacity-70">:)</button>
     </div>
   );
 }

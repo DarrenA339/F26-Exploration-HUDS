@@ -18,7 +18,7 @@ export default function FoodCard({
   return (
     <div>
       {/* LEFT: Food image */}
-
+      
       {/* MIDDLE: Food information */}
       <div>
          {/* Name */}

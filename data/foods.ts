@@ -10,12 +10,15 @@ import type { FoodItem, Meal } from "@/lib/types";
  *
  * Adding an item:
  *   1. Copy a block below and give it a unique kebab-case `id`.
- *   2. Drop a photo at `public/images/foods/<id>.jpg` and point `imageSrc` at
- *      it, or leave the placeholder.
+ *   2. Drop a photo at `public/images/foods/<id>.<ext>` and set `imageSrc` to
+ *      that exact path — extensions vary (.jpg/.jpeg/.png/.webp/.avif), so the
+ *      path is written out in full rather than derived from the `id`. With no
+ *      photo yet, use `PLACEHOLDER_IMAGE`.
  *   3. TypeScript will flag anything missing — `nutrition` needs all 15 fields.
  */
 
-const PLACEHOLDER_IMAGE = "/images/foods/placeholder.svg";
+/** Stand-in art for items that have no photo yet. */
+export const PLACEHOLDER_IMAGE = "/images/foods/placeholder.svg";
 
 export const FOODS: FoodItem[] = [
   // ----- Breakfast -------------------------------------------------------
@@ -24,7 +27,7 @@ export const FOODS: FoodItem[] = [
     name: "Scrambled Eggs",
     meals: ["Breakfast"],
     servingSize: "2 eggs (100g)",
-    imageSrc: PLACEHOLDER_IMAGE,
+    imageSrc: "/images/foods/scrambled-eggs.jpg",
     dietaryLabels: ["Vegetarian", "Gluten Free"],
     ingredients: ["Whole eggs", "Whole milk", "Butter", "Salt", "Black pepper"],
     allergens: ["Eggs", "Milk"],
@@ -51,7 +54,7 @@ export const FOODS: FoodItem[] = [
     name: "Belgian Waffle",
     meals: ["Breakfast"],
     servingSize: "1 waffle (85g)",
-    imageSrc: PLACEHOLDER_IMAGE,
+    imageSrc: "/images/foods/belgian-waffle.jpg",
     dietaryLabels: ["Vegetarian"],
     ingredients: [
       "Enriched wheat flour",
@@ -87,7 +90,7 @@ export const FOODS: FoodItem[] = [
     name: "Steel-Cut Oatmeal",
     meals: ["Breakfast"],
     servingSize: "1 cup (240g)",
-    imageSrc: PLACEHOLDER_IMAGE,
+    imageSrc: "/images/foods/steel-cut-oatmeal.jpeg",
     dietaryLabels: ["Vegan", "Vegetarian"],
     ingredients: ["Steel-cut oats", "Water", "Salt"],
     allergens: [],
@@ -114,7 +117,7 @@ export const FOODS: FoodItem[] = [
     name: "Turkey Sausage Links",
     meals: ["Breakfast"],
     servingSize: "2 links (56g)",
-    imageSrc: PLACEHOLDER_IMAGE,
+    imageSrc: "/images/foods/turkey-sausage-links.png",
     dietaryLabels: ["Halal", "Gluten Free"],
     ingredients: [
       "Ground turkey",
@@ -148,7 +151,7 @@ export const FOODS: FoodItem[] = [
     name: "Vanilla Greek Yogurt",
     meals: ["Breakfast"],
     servingSize: "3/4 cup (170g)",
-    imageSrc: PLACEHOLDER_IMAGE,
+    imageSrc: "/images/foods/vanilla-greek-yogurt.jpg",
     dietaryLabels: ["Vegetarian", "Gluten Free", "Kosher"],
     ingredients: [
       "Cultured pasteurized nonfat milk",
@@ -180,7 +183,7 @@ export const FOODS: FoodItem[] = [
     name: "Seasoned Home Fries",
     meals: ["Breakfast"],
     servingSize: "1/2 cup (85g)",
-    imageSrc: PLACEHOLDER_IMAGE,
+    imageSrc: "/images/foods/home-fries.jpeg",
     dietaryLabels: ["Vegan", "Vegetarian", "Gluten Free"],
     ingredients: [
       "Potatoes",
@@ -217,7 +220,7 @@ export const FOODS: FoodItem[] = [
     name: "Grilled Chicken Breast",
     meals: ["Lunch", "Dinner"],
     servingSize: "1 breast (140g)",
-    imageSrc: PLACEHOLDER_IMAGE,
+    imageSrc: "/images/foods/grilled-chicken-breast.jpg",
     dietaryLabels: ["Halal", "Gluten Free"],
     ingredients: [
       "Boneless chicken breast",
@@ -252,7 +255,7 @@ export const FOODS: FoodItem[] = [
     name: "Cheese Pizza",
     meals: ["Lunch", "Dinner"],
     servingSize: "1 slice (120g)",
-    imageSrc: PLACEHOLDER_IMAGE,
+    imageSrc: "/images/foods/cheese-pizza.jpg",
     dietaryLabels: ["Vegetarian"],
     ingredients: [
       "Enriched wheat flour",
@@ -289,7 +292,7 @@ export const FOODS: FoodItem[] = [
     name: "Butternut Squash Soup",
     meals: ["Lunch"],
     servingSize: "1 cup (245g)",
-    imageSrc: PLACEHOLDER_IMAGE,
+    imageSrc: "/images/foods/butternut-squash-soup.jpg",
     dietaryLabels: ["Vegetarian", "Gluten Free"],
     ingredients: [
       "Butternut squash",
@@ -325,7 +328,7 @@ export const FOODS: FoodItem[] = [
     name: "Black Bean Burger",
     meals: ["Lunch"],
     servingSize: "1 patty (113g)",
-    imageSrc: PLACEHOLDER_IMAGE,
+    imageSrc: "/images/foods/black-bean-burger.jpg",
     dietaryLabels: ["Vegan", "Vegetarian"],
     ingredients: [
       "Black beans",
@@ -362,7 +365,7 @@ export const FOODS: FoodItem[] = [
     name: "Macaroni & Cheese",
     meals: ["Lunch", "Dinner"],
     servingSize: "1 cup (200g)",
-    imageSrc: PLACEHOLDER_IMAGE,
+    imageSrc: "/images/foods/macaroni-and-cheese.jpg",
     dietaryLabels: ["Vegetarian"],
     ingredients: [
       "Elbow macaroni",
@@ -398,7 +401,7 @@ export const FOODS: FoodItem[] = [
     name: "Steamed White Rice",
     meals: ["Lunch", "Dinner"],
     servingSize: "1/4 cup (45g)",
-    imageSrc: "/images/rice.png",
+    imageSrc: "/images/foods/steamed-white-rice.png",
     dietaryLabels: ["Vegan", "Vegetarian", "Gluten Free", "Halal", "Kosher"],
     ingredients: ["Long grain white rice", "Water"],
     allergens: [],
@@ -425,7 +428,7 @@ export const FOODS: FoodItem[] = [
     name: "Roasted Broccoli",
     meals: ["Lunch", "Dinner"],
     servingSize: "1 cup (85g)",
-    imageSrc: PLACEHOLDER_IMAGE,
+    imageSrc: "/images/foods/roasted-broccoli.jpg",
     dietaryLabels: ["Vegan", "Vegetarian", "Gluten Free", "Kosher"],
     ingredients: ["Broccoli florets", "Olive oil", "Garlic", "Salt", "Red pepper flakes"],
     allergens: [],
@@ -454,7 +457,7 @@ export const FOODS: FoodItem[] = [
     name: "Baked Atlantic Salmon",
     meals: ["Dinner"],
     servingSize: "1 fillet (140g)",
-    imageSrc: PLACEHOLDER_IMAGE,
+    imageSrc: "/images/foods/baked-salmon.webp",
     dietaryLabels: ["Gluten Free"],
     ingredients: ["Atlantic salmon", "Olive oil", "Lemon", "Dill", "Salt", "Black pepper"],
     allergens: ["Fish"],
@@ -481,7 +484,7 @@ export const FOODS: FoodItem[] = [
     name: "Beef Meatballs in Marinara",
     meals: ["Dinner"],
     servingSize: "3 meatballs (150g)",
-    imageSrc: PLACEHOLDER_IMAGE,
+    imageSrc: "/images/foods/beef-meatballs-marinara.jpg",
     dietaryLabels: ["Halal"],
     ingredients: [
       "Ground beef",
@@ -519,7 +522,7 @@ export const FOODS: FoodItem[] = [
     name: "Tofu & Vegetable Stir-Fry",
     meals: ["Dinner"],
     servingSize: "1 cup (200g)",
-    imageSrc: PLACEHOLDER_IMAGE,
+    imageSrc: "/images/foods/tofu-vegetable-stir-fry.jpg",
     dietaryLabels: ["Vegan", "Vegetarian"],
     ingredients: [
       "Firm tofu",
@@ -556,7 +559,7 @@ export const FOODS: FoodItem[] = [
     name: "Garlic Mashed Potatoes",
     meals: ["Dinner"],
     servingSize: "1/2 cup (120g)",
-    imageSrc: PLACEHOLDER_IMAGE,
+    imageSrc: "/images/foods/garlic-mashed-potatoes.avif",
     dietaryLabels: ["Vegetarian", "Gluten Free"],
     ingredients: ["Russet potatoes", "Whole milk", "Butter", "Roasted garlic", "Salt", "White pepper"],
     allergens: ["Milk"],
@@ -583,7 +586,7 @@ export const FOODS: FoodItem[] = [
     name: "Vegetable Lo Mein",
     meals: ["Dinner"],
     servingSize: "1 cup (180g)",
-    imageSrc: PLACEHOLDER_IMAGE,
+    imageSrc: "/images/foods/vegetable-lo-mein.jpeg",
     dietaryLabels: ["Vegan", "Vegetarian"],
     ingredients: [
       "Lo mein noodles",
@@ -621,7 +624,7 @@ export const FOODS: FoodItem[] = [
     name: "Mixed Greens",
     meals: ["Salad Bar"],
     servingSize: "2 cups (85g)",
-    imageSrc: PLACEHOLDER_IMAGE,
+    imageSrc: "/images/foods/mixed-greens.jpg",
     dietaryLabels: ["Vegan", "Vegetarian", "Gluten Free", "Halal", "Kosher"],
     ingredients: ["Baby spinach", "Romaine", "Arugula", "Radicchio"],
     allergens: [],
@@ -648,7 +651,7 @@ export const FOODS: FoodItem[] = [
     name: "Roasted Chickpeas",
     meals: ["Salad Bar"],
     servingSize: "1/4 cup (40g)",
-    imageSrc: PLACEHOLDER_IMAGE,
+    imageSrc: "/images/foods/roasted-chickpeas.jpg",
     dietaryLabels: ["Vegan", "Vegetarian", "Gluten Free"],
     ingredients: ["Chickpeas", "Olive oil", "Cumin", "Smoked paprika", "Salt"],
     allergens: [],
@@ -675,7 +678,7 @@ export const FOODS: FoodItem[] = [
     name: "Balsamic Vinaigrette",
     meals: ["Salad Bar"],
     servingSize: "2 tbsp (30g)",
-    imageSrc: PLACEHOLDER_IMAGE,
+    imageSrc: "/images/foods/balsamic-vinaigrette.jpg",
     dietaryLabels: ["Vegan", "Vegetarian", "Gluten Free", "Kosher"],
     ingredients: ["Olive oil", "Balsamic vinegar", "Dijon mustard", "Honey", "Garlic", "Salt"],
     allergens: [],
@@ -702,7 +705,7 @@ export const FOODS: FoodItem[] = [
     name: "Shredded Cheddar",
     meals: ["Salad Bar"],
     servingSize: "1/4 cup (28g)",
-    imageSrc: PLACEHOLDER_IMAGE,
+    imageSrc: "/images/foods/shredded-cheddar.jpeg",
     dietaryLabels: ["Vegetarian", "Gluten Free", "Kosher"],
     ingredients: ["Pasteurized milk", "Cheese cultures", "Salt", "Enzymes", "Annatto"],
     allergens: ["Milk"],
@@ -731,7 +734,7 @@ export const FOODS: FoodItem[] = [
     name: "Chocolate Chip Cookie",
     meals: ["Desserts & Daily Offerings"],
     servingSize: "1 cookie (45g)",
-    imageSrc: PLACEHOLDER_IMAGE,
+    imageSrc: "/images/foods/chocolate-chip-cookie.jpg",
     dietaryLabels: ["Vegetarian"],
     ingredients: [
       "Enriched wheat flour",
@@ -767,7 +770,7 @@ export const FOODS: FoodItem[] = [
     name: "Vanilla Soft Serve",
     meals: ["Desserts & Daily Offerings"],
     servingSize: "1/2 cup (88g)",
-    imageSrc: PLACEHOLDER_IMAGE,
+    imageSrc: "/images/foods/vanilla-soft-serve.jpg",
     dietaryLabels: ["Vegetarian", "Gluten Free", "Kosher"],
     ingredients: ["Milk", "Cream", "Sugar", "Corn syrup", "Vanilla extract", "Guar gum"],
     allergens: ["Milk"],
@@ -794,7 +797,7 @@ export const FOODS: FoodItem[] = [
     name: "Fresh Fruit Salad",
     meals: ["Desserts & Daily Offerings", "Breakfast"],
     servingSize: "1 cup (150g)",
-    imageSrc: PLACEHOLDER_IMAGE,
+    imageSrc: "/images/foods/fresh-fruit-salad.jpg",
     dietaryLabels: ["Vegan", "Vegetarian", "Gluten Free", "Halal", "Kosher"],
     ingredients: ["Cantaloupe", "Honeydew", "Pineapple", "Green grapes", "Strawberries"],
     allergens: [],
@@ -821,7 +824,7 @@ export const FOODS: FoodItem[] = [
     name: "Fudge Brownie",
     meals: ["Desserts & Daily Offerings"],
     servingSize: "1 brownie (60g)",
-    imageSrc: PLACEHOLDER_IMAGE,
+    imageSrc: "/images/foods/fudge-brownie.jpg",
     dietaryLabels: ["Vegetarian"],
     ingredients: [
       "Sugar",

@@ -1,65 +1,22 @@
+import Link from "next/link";
 import MealButton from "@/components/mealButton";
 import DietaryTag from "@/components/dietaryTag";
 import FoodInfoOverlay from "@/components/foodInfoOverlay";
 import FoodCard from "@/components/foodCard";
+import Header from "@/components/header";
 import { getAllFoods } from "@/data/foods"
 
 export default function Home() {
     // this is an array of all of our foods with their info
     const foods = getAllFoods();
   return (
-    <main >
-        {foods.map((food) => (
-            <FoodCard key={food.id}
-            name={food.name}
-            imageSrc={food.imageSrc}
-            calories={food.nutrition.calories}
-            servings={1}
-            tags={food.dietaryLabels}
-            />
-        ))}
-
-      <div className = 'flex'>
-        <MealButton label="Breakfast" isActive={false} />
-        <MealButton label="Lunch" isActive={false} />
-        <MealButton label="Dinner" isActive={false} />
-        <MealButton label="Salad Bar" isActive={true} />
-        <MealButton
-          label="Desserts & Daily Offerings"
-          isActive={false}
-        />
-      </div>
-
-      <div className = 'flex'>
-        <DietaryTag
-          label="Vegan"
-          color="#166534"
-          backgroundColor="#E8F5EC"
-        />
-
-        <DietaryTag
-          label="Gluten free"
-          color="#996000"
-          backgroundColor="#FFF3DF"
-      />
-      </div>
-
-      <div>
-        {foods.map((food) => (
-            <FoodInfoOverlay key={food.id}
-            name={food.name}
-            meal={food.meals.join(", ")}
-            servingSize={food.servingSize}
-            imageSrc={food.imageSrc}
-            dietaryLabels={food.dietaryLabels}
-            ingredients={food.ingredients}
-            allergens={food.allergens}
-            nutrition={food.nutrition}
-      />
-        ))}
-      </div>
-
-      
+    <>
+    <main>
+        <Link href="/main-menu">
+            <button className="border rounded-lg bg-green-100 text-black w-50 h-10 hover:cursor-pointer">Go to Menu</button>
+        </Link>
+        
     </main>
+    </>
   );
 }

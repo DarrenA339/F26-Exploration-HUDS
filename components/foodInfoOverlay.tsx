@@ -2,7 +2,6 @@
 
 import {useState} from "react";
 import NutritionLabel from "@/components/nutritionLabel";
-import foodCard from "@/components/foodCard"
 import DietaryTag from "@/components/dietaryTag";
 import {ALLERGEN_TAG_COLORS, dietaryTagColors} from "@/lib/dietaryColors";
 import type {Allergen, DietaryLabel, NutritionFacts} from "@/lib/types";
@@ -64,7 +63,7 @@ export default function FoodInfoOverlay({
           {/* LEFT COLUMN */}
           <div className="mr-5">
             {/* Food image */}
-            <img className="rounded-lg mb-4" src={imageSrc}></img>
+            <img className="rounded-lg max-w-150 max-h-100 object-contain mb-4" src={imageSrc}></img>
 
             {/* Ingredients section */}
             <h3 className="font-bold text-xl">Ingredients</h3>

@@ -1,12 +1,10 @@
 import HouseDropdown from "@/components/houseDropdown";
+import { houses } from "@/data/houses";
 
 export default function Home() {
   return (
-    <main>
-      <HouseDropdown
-        houseName="Adams"
-        imageSrc="/images/houses/adams.jpg"
-      />
+    <main className="p-8">
+      <HouseDropdown house={houses[0]} />
     </main>
   );
 }

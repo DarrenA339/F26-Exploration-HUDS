@@ -6,6 +6,7 @@ import FoodCard from "@/components/foodCard";
 import Header from "@/components/header";
 import { getAllFoods } from "@/data/foods"
 import Preamble from "@/components/preamble";
+import CalTrackerButton from "@/components/calTrackerButton";
 
 export default function Home() {
     // this is an array of all of our foods with their info
@@ -33,6 +34,9 @@ export default function Home() {
         />
       </div>
 
+      <div className="flex justify-center my-8">
+        <CalTrackerButton />
+      </div>
 
       <div>
         {/* {foods.map((food) => (

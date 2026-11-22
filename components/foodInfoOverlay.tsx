@@ -1,25 +1,22 @@
 "use client";
 
 import {useState} from "react";
-import Image from "next/image";
+import NutritionLabel from "@/components/nutritionLabel";
+import DietaryTag from "@/components/dietaryTag";
+import {ALLERGEN_TAG_COLORS, dietaryTagColors} from "@/lib/dietaryColors";
+import type {Allergen, DietaryLabel, NutritionFacts} from "@/lib/types";
+
 
 type FoodInfoOverlayProps = {
   name: string;
   meal: string;
   servingSize: string;
   imageSrc: string;
-  dietaryLabels: string[];
+  dietaryLabels: DietaryLabel[];
   ingredients: string[];
-  allergens: string[];
-  nutritionSrc: string;
-};
-
-const DIETARY_COLORS: Record<string, string> = {
-  vegan: "bg-[#E7F3EC] text-[#2E6B4F]",
-  vegetarian: "bg-[#E7F3EC] text-[#2E6B4F]",
-  "gluten free": "bg-[#FDF2E2] text-[#8A5A18]",
-  halal: "bg-[#E8EFF9] text-[#2B4F86]",
-  kosher: "bg-[#F0EAF8] text-[#5B3A89]",
+  allergens: Allergen[];
+  /** Per-serving numbers. The panel on the right is rendered from these. */
+  nutrition: NutritionFacts;
 };
 
 export default function FoodInfoOverlay({
@@ -30,7 +27,7 @@ export default function FoodInfoOverlay({
   dietaryLabels,
   ingredients,
   allergens,
-  nutritionSrc,
+  nutrition,
 }: FoodInfoOverlayProps) {
     const [servings, setServings] = useState(1);
   return (
@@ -55,14 +52,10 @@ export default function FoodInfoOverlay({
         </div>
 
         {/* Dietary labels */}
-        <div className="flex flex-wrap gap-2 my-3">
-          {/* Map through dietaryLabels. use basic text for now and add the component when teammate creates it*/}
-          {dietaryLabels.map((label) => {
-            const colors = DIETARY_COLORS[label.toLowerCase()] ?? "bg-gray-100 text-gray-700";
-            return (
-                <span key={label} className={"font-bold px-3 py-1 text-sm rounded-full " + colors}>{label}</span>
-            );
-          })}
+        <div className="flex flex-wrap my-2">
+          {dietaryLabels.map((label) => (
+            <DietaryTag key={label} label={label} {...dietaryTagColors(label)} />
+          ))}
         </div>
 
         {/* Two-column content layout */}
@@ -70,7 +63,7 @@ export default function FoodInfoOverlay({
           {/* LEFT COLUMN */}
           <div className="mr-5">
             {/* Food image */}
-            <img className="rounded-lg mb-4" src={imageSrc}></img>
+            <img className="rounded-lg max-w-150 max-h-100 object-contain mb-4" src={imageSrc}></img>
 
             {/* Ingredients section */}
             <h3 className="font-bold text-xl">Ingredients</h3>
@@ -79,19 +72,21 @@ export default function FoodInfoOverlay({
             {/* Contains / Allergens section */}
             
             <h3 className="font-bold text-xl mb-1">Contains</h3>
-            <div className="flex flex-wrap gap-2">
-                {allergens.map((allergen) => (
-                    <span key={allergen} className="bg-red-100 font-bold text-[#a51c30] rounded-full px-3">
-                        {allergen}
-                    </span>
-                ))}
+            <div className="flex flex-wrap">
+              {allergens.map((allergen) => (
+                <DietaryTag key={allergen} label={allergen} {...ALLERGEN_TAG_COLORS} />
+              ))}
             </div>
           </div>
 
           {/* RIGHT COLUMN */}
           <div>
-            {/* Nutrition Facts panel can be image for now*/}
-            <img className="border-2" src={nutritionSrc}></img>
+            {/* Nutrition Facts panel, which is rendered from data and scaled by the serving stepper below. */}
+            <NutritionLabel
+              nutrition={nutrition}
+              servingSize={servingSize}
+              servings={servings}
+            />
           </div>
         </div>
 
